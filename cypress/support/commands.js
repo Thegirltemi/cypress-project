@@ -1,5 +1,4 @@
 
-
 // cypress/support/commands.js
 Cypress.Commands.add("login", (email, password) => {
   // Visit login page

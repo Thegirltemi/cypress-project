@@ -34,7 +34,7 @@ Given("that I am on the FAQ page and have selected an existing FAQ", () => {
 When("I click on the Edit button", ()=>{
 
 
-    cy.contains("Do you have any payment plan")
+    cy.contains("Are there in-house doctors")
   .should("be.visible");
 
   cy.get('[data-testid="faq-more-options-2"]')
@@ -53,13 +53,13 @@ And("I update the FAQ content", () => {
   cy.get(faqQuestionInput)
     .should("be.visible")
     .clear()
-    .type("Do you offer installment payment plans?");
+    .type("22/01/26");
 
   // Update the FAQ answer
   cy.get(faqAnswerTextarea)
     .should("be.visible")
     .clear()
-    .type("Yes, we offer flexible installment payment options.");
+    .type("Yes, we offer a 24hrs service.");
 
   //  Save the updated FAQ
   cy.get(saveFaqBtn)
@@ -71,6 +71,7 @@ Then("the FAQ should be updated successfully", () => {
   // Assert alert
   cy.on("window:alert", (text) => {
     expect(text).to.equal("FAQ updated successfully!");
+    cy.url().should("include", "/settings/faq");
   });
 
 });
